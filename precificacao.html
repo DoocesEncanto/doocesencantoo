@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Precificação</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #ff7f50;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-right: 20px;
+    }
+
+    .navbar a:hover {
+      color: #ff9900;
+    }
+
+    header {
+      background-color: #ff7f50;
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .formulario {
+      padding: 40px;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #ffcc99;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #ff7f50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #ff9900;
+    }
+
+    .footer {
+      background-color: #ffcc99;
+      padding: 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .footer a {
+      color: #ff7f50;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer a:hover {
+      color: #ff9900;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Navegação fixa no topo -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="controle.html">Controle</a>
+    <a href="produtos.html">Produtos</a>
+    <a href="vendas.html">Vendas</a>
+    <a href="despesas.html">Despesas</a>
+  </div>
+
+  <!-- Cabeçalho -->
+  <header>
+    Precificação de Produtos
+  </header>
+
+  <!-- Formulário de Precificação -->
+  <div class="formulario">
+    <h2>Defina os preços dos produtos</h2>
+    <form>
+      <label for="produto">Nome do Produto:</label>
+      <input type="text" id="produto" name="produto" placeholder="Nome do Produto">
+
+      <label for="preco">Preço:</label>
+      <input type="number" id="preco" name="preco" placeholder="Preço do Produto" min="0" step="0.01">
+
+      <button type="submit">Salvar Preço</button>
+    </form>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Confeitaria Doce Encanto - Todos os direitos reservados.</p>
+  </div>
+
+</body>
+</html>
