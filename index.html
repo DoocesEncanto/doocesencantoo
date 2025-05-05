@@ -4,94 +4,104 @@
   <meta charset="UTF-8">
   <title>Controle da Confeitaria - Produção de Doces</title>
   <style>
+    /* Estilos personalizados */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4e1d2;
       margin: 0;
       padding: 0;
-      background-color: #fff8f0;
       color: #333;
     }
-
-    /* Barra de Navegação no topo */
-    .navbar {
+    header {
       background-color: #813a1c;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1000;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
     }
-
-    .navbar a {
-      color: white;
+    .menu {
+      background-color: #ffcc99;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    .menu a {
+      color: #813a1c;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.1rem;
-      margin-right: 20px;
     }
-
-    .navbar a:hover {
+    .menu a:hover {
       color: #ff9900;
     }
-
-    header {
-      background-color: #813a1c;
-      color: white;
-      padding: 80px 0;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    /* Conteúdo Principal */
-    .main-content {
-      padding: 100px 20px 20px 20px;
-      text-align: center;
-    }
-
-    .main-content .descricao {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    /* Alinhar os botões ao lado da descrição */
-    .botao-container {
+    .content {
+      margin: 20px;
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn-navegacao {
-      background-color: #813a1c;
-      color: white;
-      padding: 15px 25px;
-      margin: 10px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      display: inline-block;
-      transition: background-color 0.3s;
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
     }
-
-    .btn-navegacao:hover {
-      background-color: #ff9900;
+    .form-section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      width: 80%;
+      max-width: 600px;
     }
-
-    /* Adicionar um ícone antes do texto */
-    .btn-navegacao img {
-      width: 20px;
-      height: 20px;
+    .form-section h2 {
+      color: #813a1c;
+      text-align: center;
     }
-
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #813a1c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e86d45;
+    }
+    .doce-item {
+      background-color: #fff;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      max-width: 600px;
+    }
+    .doce-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    .doce-item .doce-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .doce-item .doce-info h3 {
+      color: #813a1c;
+      margin: 0;
+    }
+    .doce-item .doce-info p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
     .footer {
       background-color: #ffcc99;
       padding: 20px;
@@ -99,59 +109,75 @@
       font-size: 1rem;
       color: #333;
     }
-
-    .footer a {
-      color: #813a1c;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    .footer a:hover {
-      color: #ff9900;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Barra de Navegação fixa no topo -->
-  <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="controle.html">Controle</a>
-    <a href="produtos.html">Produtos</a>
-    <a href="vendas.html">Vendas</a>
-    <a href="despesas.html">Despesas</a>
-  </div>
-
-  <!-- Cabeçalho -->
   <header>
     Controle da Confeitaria - Produção de Doces
   </header>
 
-  <!-- Conteúdo Principal -->
-  <div class="main-content">
-    <h2>Bem-vindo ao sistema de controle da confeitaria!</h2>
-    <p class="descricao">Aqui você pode gerenciar todas as áreas da sua confeitaria de forma simples e rápida.</p>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+    <a href="estoque.html">Estoque</a>
+    <a href="precificacao.html">Precificação</a>
+    <a href="produtos.html">Produtos</a>
+  </div>
 
-    <!-- Botões de navegação -->
-    <div class="botao-container">
-      <a href="controle.html" class="btn-navegacao">
-        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Controle de Produção
-      </a>
-      <a href="produtos.html" class="btn-navegacao">
-        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Cadastro de Produtos
-      </a>
-      <a href="vendas.html" class="btn-navegacao">
-        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Visualizar Vendas
-      </a>
-      <a href="despesas.html" class="btn-navegacao">
-        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Registrar Despesas
-      </a>
+  <div class="content">
+    <div class="form-section">
+      <h2>Registrar Produção de Doces</h2>
+
+      <!-- Seleção de tipo de doce -->
+      <label for="tipoDoce">Tipo de Doce:</label>
+      <select id="tipoDoce">
+        <option value="trufa">Trufa</option>
+        <option value="barra">Barra</option>
+      </select>
+
+      <!-- Quantidade de doces -->
+      <label for="quantidadeDoces">Quantidade de Doces:</label>
+      <input type="number" id="quantidadeDoces" placeholder="Quantidade de doces produzidos">
+
+      <!-- Valor de cada doce -->
+      <label for="valorDoce">Valor Unitário de Cada Doce (R$):</label>
+      <input type="number" id="valorDoce" placeholder="Valor de cada doce" readonly>
+
+      <!-- Sabores -->
+      <label for="sabores">Sabores:</label>
+      <select id="sabores">
+        <option value="leite-ninho">Leite Ninho</option>
+        <option value="beijinho">Beijinho</option>
+        <option value="brigadeiro">Brigadeiro</option>
+        <option value="dois-amores">Dois Amores</option>
+        <option value="maracuja">Maracujá</option>
+        <option value="maracuja-brigadeiro">Maracujá com Brigadeiro</option>
+        <option value="ninho-nutela">Ninho com Nutela</option>
+        <option value="ferrero">Ferrero Rocher</option>
+        <option value="kit-kat">Kit Kat</option>
+        <option value="laka-oreo">Laka Oreo</option>
+      </select>
+
+      <button onclick="registrarDoces()">Registrar Produção</button>
+    </div>
+
+    <h2>Doces Produzidos</h2>
+    <div id="listaDoces">
+      <!-- Os doces serão listados aqui -->
     </div>
   </div>
 
   <div class="footer">
-    <p>© 2025 Confeitaria Doce Encanto - Todos os direitos reservados.</p>
+    © 2025 Confeitaria Doce Encanto - Todos os direitos reservados.
   </div>
 
-</body>
-</html>
+  <script>
+    // Preço baseado no tipo e sabor
+    const precoDoces = {
+      trufa: {
+        "leite-ninho": 8.00,
+       
+::contentReference[oaicite:0]{index=0}
+ 
