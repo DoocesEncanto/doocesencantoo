@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Produção de Doces</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4e1d2;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #813a1c;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+    .menu {
+      background-color: #ffcc99;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    .menu a {
+      color: #813a1c;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .menu a:hover {
+      color: #ff9900;
+    }
+    .content {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .form-section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      width: 80%;
+      max-width: 600px;
+    }
+    .form-section h2 {
+      color: #813a1c;
+      text-align: center;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #813a1c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e86d45;
+    }
+    .doce-item {
+      background-color: #fff;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      max-width: 600px;
+    }
+    .doce-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    .doce-item .doce-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .doce-item .doce-info h3 {
+      color: #813a1c;
+      margin: 0;
+    }
+    .doce-item .doce-info p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    .footer {
+      background-color: #ffcc99;
+      padding: 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Controle da Confeitaria - Produção de Doces
+  </header>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+  </div>
+
+  <div class="content">
+    <div class="form-section">
+      <h2>Registrar Produção de Doces</h2>
+
+      <!-- Seleção de tipo de doce -->
+      <label for="tipoDoce">Tipo de Doce:</label>
+      <select id="tipoDoce">
+        <option value="trufa">Trufa</option>
+        <option value="barra">Barra</option>
+      </select>
+
+      <!-- Quantidade de doces -->
+      <label for="quantidadeDoces">Quantidade de Doces:</label>
+      <input type="number" id="quantidadeDoces" placeholder="Quantidade de doces produzidos">
+
+      <!-- Valor de cada doce -->
+      <label for="valorDoce">Valor Unitário de Cada Doce (R$):</label>
+      <input type="number" id="valorDoce" placeholder="Valor de cada doce" readonly>
+
+      <!-- Sabores -->
+      <label for="sabores">Sabores:</label>
+      <select id="sabores">
+        <option value="leite-ninho">Leite Ninho</option>
+        <option value="beijinho">Beijinho</option>
+        <option value="brigadeiro">Brigadeiro</option>
+        <option value="dois-amores">Dois Amores</option>
+        <option value="maracuja">Maracujá</option>
+        <option value="maracuja-brigadeiro">Maracujá com Brigadeiro</option>
+        <option value="ninho-nutela">Ninho com Nutela</option>
+        <option value="ferrero">Ferrero Rocher</option>
+        <option value="kit-kat">Kit Kat</option>
+        <option value="laka-oreo">Laka Oreo</option>
+      </select>
+
+      <button onclick="registrarDoces()">Registrar Produção</button>
+    </div>
+
+    <h2>Doces Produzidos</h2>
+    <div id="listaDoces">
+      <!-- Os doces serão listados aqui -->
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Confeitaria Doce Encanto - Todos os direitos reservados.
+  </div>
+
+  <script>
+    // Preço baseado no tipo e sabor
+    const precoDoces = {
+      trufa: {
+        "leite-ninho": 8.00,
+        "beijinho": 8.00,
+        "brigadeiro": 8.00,
+        "dois-amores": 8.00,
+        "maracuja": 8.00,
+        "maracuja-brigadeiro": 8.00,
+        "ninho-nutela": 12.00,
+        "ferrero": 12.00,
+        "kit-kat": 12.00,
+        "laka-oreo": 12.00,
+      },
+      barra: {
+        "leite-ninho": 22.00,
+        "
+::contentReference[oaicite:0]{index=0}
+ 
