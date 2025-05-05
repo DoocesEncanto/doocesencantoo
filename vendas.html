@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Vendas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #cc5c00;
+    }
+
+    .menu {
+      background-color: #cc5c00;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+
+    .menu a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      background-color: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ffe1c4;
+    }
+
+    .total {
+      font-weight: bold;
+      background-color: #fff3e0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu de navegação -->
+  <div class="menu">
+    <a href="index.html">Cadastro de Vendas</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+  </div>
+
+  <h1>Vendas Registradas</h1>
+
+  <button onclick="gerarRelatorioVendas()">Gerar Relatório de Vendas por Mês</button>
+
+  <div id="relatorioVendas"></div>
+  <div id="registros"></div>
+
+  <script>
+    // Função para gerar relatório de vendas por mês
+    function gerarRelatorioVendas() {
+      let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+      const relatorio = {};
+
+      vendas.forEach(venda => {
+        const [ano, mes] = venda.data.split('-');
+        const mesAno = `${mes}/${ano}`;
+
+        const total = venda.quantidade * venda.valorUnitario;
+        if (!relatorio[mesAno]) {
+          relatorio[mesAno] = 0;
+        }
+        relatorio[mesAno] += total;
+      });
+
+      let html = "<h2>Relatório de Vendas por Mês</h2><table><tr><th>Mês/Ano</th><th>Total de Vendas</th></tr>";
+      for (let mesAno in relatorio) {
+        html += `<tr><td>${mesAno}</td><td>R$ ${relatorio[mesAno].toFixed(2)}</td></tr>`;
+      }
+      html += "</table>";
+      document.getElementById("relatorioVendas").innerHTML = html;
+    }
+
+    // Exibir vendas registradas
+    function exibirVendas() {
+      let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+      let html = "<h2>Vendas Recentes</h2><table><tr><th>Data</th><th>Vendedor</th><th>Categoria</th><th>Produto</th><th>Qtd</th><th>Valor Unit.</th><th>Total</th></tr>";
+      vendas.forEach(venda => {
+        const total = venda.quantidade * venda.valorUnitario;
+        html += `<tr><td>${venda.data}</td><td>${venda.vendedor}</td><td>${venda.categoria}</td><td>${venda.produto}</td><td>${venda.quantidade}</td><td>R$ ${venda.valorUnitario.toFixed(2)}</td><td>R$ ${total.toFixed(2)}</td></tr>`;
+      });
+      html += "</table>";
+      document.getElementById("registros").innerHTML = html;
+    }
+
+    // Chamar para exibir as vendas quando carregar a página
+    exibirVendas();
+  </script>
+
+</body>
+</html>

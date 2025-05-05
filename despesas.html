@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Despesas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #cc5c00;
+    }
+
+    .menu {
+      background-color: #cc5c00;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+
+    .menu a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin: 5px 5px 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #cc5c00;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a34700;
+    }
+
+    .form-section {
+      background-color: #fff3e0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu de navegação -->
+  <div class="menu">
+    <a href="index.html">Cadastro de Vendas</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+  </div>
+
+  <h1>Registrar Despesas</h1>
+
+  <div class="form-section">
+    <label for="dataDespesa">Data:</label>
+    <input type="date" id="dataDespesa">
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="descricao" placeholder="Descrição da despesa">
+    <label for="valorDespesa">Valor:</label>
+    <input type="number" id="valorDespesa" placeholder="Valor da despesa" min="0" step="0.01">
+    <button onclick="adicionarDespesa()">Adicionar Despesa</button>
+  </div>
+
+  <script>
+    // Função para adicionar despesas
+    function adicionarDespesa() {
+      const data = document.getElementById("dataDespesa").value;
+      const descricao = document.getElementById("descricao").value;
+      const valor = parseFloat(document.getElementById("valorDespesa").value);
+
+      if (!data || !descricao || !valor) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const despesa = { data, descricao, valor };
+
+      // Armazenar a despesa no localStorage
+      let despesas = JSON.parse(localStorage.getItem("despesas")) || [];
+      despesas.push(despesa);
+      localStorage.setItem("despesas", JSON.stringify(despesas));
+
+      alert("Despesa registrada com sucesso!");
+      limparCampos();
+    }
+
+    // Limpar campos após adicionar despesa
+    function limparCampos() {
+      document.getElementById("dataDespesa").value = "";
+      document.getElementById("descricao").value = "";
+      document.getElementById("valorDespesa").value = "";
+    }
+  </script>
+
+</body>
+</html>

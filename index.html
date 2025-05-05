@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Cadastro de Vendas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #cc5c00;
+    }
+
+    .menu {
+      background-color: #cc5c00;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+    }
+
+    .menu a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+
+    input, select, button {
+      padding: 8px;
+      margin: 5px 5px 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #cc5c00;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a34700;
+    }
+
+    .form-section {
+      background-color: #fff3e0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu de navegação -->
+  <div class="menu">
+    <a href="index.html">Cadastro de Vendas</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+  </div>
+
+  <h1>Cadastro de Vendas</h1>
+
+  <div class="form-section">
+    <label for="data">Data:</label>
+    <input type="date" id="data">
+    <label for="vendedor">Vendedor:</label>
+    <select id="vendedor">
+      <option value="Emilly">Emilly</option>
+      <option value="Davi">Davi</option>
+    </select>
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria">
+      <option value="Cone">Cone</option>
+      <option value="Barra">Barra</option>
+    </select>
+
+    <label for="produto">Sabor:</label>
+    <select id="produto"></select>
+
+    <input type="number" id="quantidade" placeholder="Qtd" min="1">
+    <input type="number" id="valor" placeholder="Valor Unit." min="0" step="0.01">
+    <button onclick="adicionarVenda()">Adicionar</button>
+  </div>
+
+  <script>
+    const sabores = {
+      "Cone": ["Ferrero Rocher", "Leite Ninho Nutella", "Maracujá Brigadeiro", "Ninho", "Maracujá", "Beijinho", "Brigadeiro", "Dois Amores"],
+      "Barra": ["Maracujá Brigadeiro", "Leite Ninho Nutella"]
+    };
+
+    // Função para popular os sabores no select
+    function popularSabores() {
+      const categoria = document.getElementById("categoria").value;
+      const produtoSelect = document.getElementById("produto");
+      produtoSelect.innerHTML = ""; // Limpar sabores anteriores
+
+      const saboresCategoria = sabores[categoria];
+      saboresCategoria.forEach(sabor => {
+        const option = document.createElement("option");
+        option.value = sabor;
+        option.textContent = sabor;
+        produtoSelect.appendChild(option);
+      });
+    }
+
+    document.getElementById("categoria").addEventListener("change", popularSabores);
+
+    // Inicializar sabores na primeira vez
+    popularSabores();
+
+    // Função para adicionar uma venda
+    function adicionarVenda() {
+      const data = document.getElementById("data").value;
+      const vendedor = document.getElementById("vendedor").value;
+      const categoria = document.getElementById("categoria").value;
+      const produto = document.getElementById("produto").value;
+      const quantidade = document.getElementById("quantidade").value;
+      const valorUnitario = document.getElementById("valor").value;
+
+      if (!data || !quantidade || !valorUnitario) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const venda = {
+        data,
+        vendedor,
+        categoria,
+        produto,
+        quantidade: parseInt(quantidade),
+        valorUnitario: parseFloat(valorUnitario)
+      };
+
+      // Armazenar a venda no localStorage
+      let vendas = JSON.parse(localStorage.getItem("vendas")) || [];
+      vendas.push(venda);
+      localStorage.setItem("vendas", JSON.stringify(vendas));
+
+      alert("Venda adicionada com sucesso!");
+      limparCampos();
+    }
+
+    function limparCampos() {
+      document.getElementById("data").value = "";
+      document.getElementById("quantidade").value = "";
+      document.getElementById("valor").value = "";
+    }
+  </script>
+
+</body>
+</html>
