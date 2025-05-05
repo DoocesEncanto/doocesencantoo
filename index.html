@@ -14,7 +14,7 @@
 
     /* Barra de Navegação no topo */
     .navbar {
-      background-color: #ff7f50;
+      background-color: #813a1c;
       color: white;
       padding: 10px 20px;
       display: flex;
@@ -40,7 +40,7 @@
     }
 
     header {
-      background-color: #ff7f50;
+      background-color: #813a1c;
       color: white;
       padding: 80px 0;
       text-align: center;
@@ -48,25 +48,48 @@
       font-weight: bold;
     }
 
+    /* Conteúdo Principal */
     .main-content {
       padding: 100px 20px 20px 20px;
       text-align: center;
     }
 
+    .main-content .descricao {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    /* Alinhar os botões ao lado da descrição */
+    .botao-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     .btn-navegacao {
-      background-color: #ff7f50;
+      background-color: #813a1c;
       color: white;
       padding: 15px 25px;
-      margin: 10px 15px;
+      margin: 10px;
       border-radius: 5px;
       text-decoration: none;
       font-size: 1.2rem;
       display: inline-block;
       transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .btn-navegacao:hover {
       background-color: #ff9900;
+    }
+
+    /* Adicionar um ícone antes do texto */
+    .btn-navegacao img {
+      width: 20px;
+      height: 20px;
     }
 
     .footer {
@@ -78,7 +101,7 @@
     }
 
     .footer a {
-      color: #ff7f50;
+      color: #813a1c;
       text-decoration: none;
       margin: 0 10px;
     }
@@ -107,14 +130,22 @@
   <!-- Conteúdo Principal -->
   <div class="main-content">
     <h2>Bem-vindo ao sistema de controle da confeitaria!</h2>
-    <p>Aqui você pode gerenciar todas as áreas da sua confeitaria de forma simples e rápida.</p>
+    <p class="descricao">Aqui você pode gerenciar todas as áreas da sua confeitaria de forma simples e rápida.</p>
 
     <!-- Botões de navegação -->
-    <div>
-      <a href="controle.html" class="btn-navegacao">Controle de Produção</a>
-      <a href="produtos.html" class="btn-navegacao">Cadastro de Produtos</a>
-      <a href="vendas.html" class="btn-navegacao">Visualizar Vendas</a>
-      <a href="despesas.html" class="btn-navegacao">Registrar Despesas</a>
+    <div class="botao-container">
+      <a href="controle.html" class="btn-navegacao">
+        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Controle de Produção
+      </a>
+      <a href="produtos.html" class="btn-navegacao">
+        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Cadastro de Produtos
+      </a>
+      <a href="vendas.html" class="btn-navegacao">
+        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Visualizar Vendas
+      </a>
+      <a href="despesas.html" class="btn-navegacao">
+        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Cifrao"> Registrar Despesas
+      </a>
     </div>
   </div>
 
