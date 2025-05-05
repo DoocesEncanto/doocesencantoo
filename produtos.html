@@ -6,14 +6,14 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fdf5e6;
+      background-color: #f4e1d2;
       margin: 0;
       padding: 0;
       color: #333;
     }
 
     header {
-      background-color: #ffb3b3;
+      background-color: #813a1c;
       padding: 20px;
       text-align: center;
       font-size: 2rem;
@@ -28,7 +28,7 @@
     }
 
     .menu a {
-      color: #fff;
+      color: #813a1c;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
@@ -57,11 +57,11 @@
     }
 
     .form-section h2 {
-      color: #ff7f50;
+      color: #813a1c;
       text-align: center;
     }
 
-    input, button {
+    input, select, button {
       padding: 10px;
       margin: 10px 0;
       width: 100%;
@@ -71,7 +71,7 @@
     }
 
     button {
-      background-color: #ff7f50;
+      background-color: #813a1c;
       color: white;
       border: none;
       cursor: pointer;
@@ -108,7 +108,7 @@
     }
 
     .doce-item .doce-info h3 {
-      color: #ff7f50;
+      color: #813a1c;
       margin: 0;
     }
 
@@ -141,12 +141,37 @@
   <div class="content">
     <div class="form-section">
       <h2>Registrar Produção de Doces</h2>
+
+      <!-- Seleção de tipo de doce -->
+      <label for="tipoDoce">Tipo de Doce:</label>
+      <select id="tipoDoce">
+        <option value="trufa">Trufa</option>
+        <option value="barra">Barra</option>
+      </select>
+
+      <!-- Quantidade de doces -->
       <label for="quantidadeDoces">Quantidade de Doces:</label>
       <input type="number" id="quantidadeDoces" placeholder="Quantidade de doces produzidos">
+
+      <!-- Valor de cada doce -->
       <label for="valorDoce">Valor Unitário de Cada Doce (R$):</label>
-      <input type="number" id="valorDoce" placeholder="Valor de cada doce">
+      <input type="number" id="valorDoce" placeholder="Valor de cada doce" readonly>
+
+      <!-- Sabores -->
       <label for="sabores">Sabores:</label>
-      <input type="text" id="sabores" placeholder="Ex: Chocolate, Morango">
+      <select id="sabores">
+        <option value="leite-ninho">Leite Ninho</option>
+        <option value="beijinho">Beijinho</option>
+        <option value="brigadeiro">Brigadeiro</option>
+        <option value="dois-amores">Dois Amores</option>
+        <option value="maracuja">Maracujá</option>
+        <option value="maracuja-brigadeiro">Maracujá com Brigadeiro</option>
+        <option value="ninho-nutela">Ninho com Nutela</option>
+        <option value="ferrero">Ferrero Rocher</option>
+        <option value="kit-kat">Kit Kat</option>
+        <option value="laka-oreo">Laka Oreo</option>
+      </select>
+
       <button onclick="registrarDoces()">Registrar Produção</button>
     </div>
 
@@ -161,17 +186,48 @@
   </div>
 
   <script>
-    function registrarDoces() {
-      const quantidade = parseInt(document.getElementById("quantidadeDoces").value);
-      const valorUnitario = parseFloat(document.getElementById("valorDoce").value);
-      const sabores = document.getElementById("sabores").value;
+    // Preço baseado no tipo e sabor
+    const precoDoces = {
+      trufa: {
+        "leite-ninho": 8.00,
+        "beijinho": 8.00,
+        "brigadeiro": 8.00,
+        "dois-amores": 8.00,
+        "maracuja": 8.00,
+        "maracuja-brigadeiro": 8.00,
+        "ninho-nutela": 12.00,
+        "ferrero": 12.00,
+        "kit-kat": 12.00,
+        "laka-oreo": 12.00,
+      },
+      barra: {
+        "leite-ninho": 22.00,
+        "beijinho": 22.00,
+        "brigadeiro": 22.00,
+        "dois-amores": 22.00,
+        "maracuja": 22.00,
+        "maracuja-brigadeiro": 22.00,
+        "ninho-nutela": 25.00,
+        "ferrero": 25.00,
+        "kit-kat": 25.00,
+        "laka-oreo": 25.00,
+      }
+    };
 
-      if (!quantidade || !valorUnitario || !sabores) {
+    function registrarDoces() {
+      const tipo = document.getElementById("tipoDoce").value;
+      const quantidade = parseInt(document.getElementById("quantidadeDoces").value);
+      const sabor = document.getElementById("sabores").value;
+
+      const valorUnitario = precoDoces[tipo][sabor];
+      document.getElementById("valorDoce").value = valorUnitario.toFixed(2);
+
+      if (!quantidade || !sabor) {
         alert("Por favor, preencha todos os campos.");
         return;
       }
 
-      const doces = { quantidade, valorUnitario, sabores };
+      const doces = { tipo, quantidade, sabor, valorUnitario };
 
       // Armazenar a produção de doces no localStorage
       let producao = JSON.parse(localStorage.getItem("producaoDoces")) || [];
@@ -194,9 +250,8 @@
         item.classList.add("doce-item");
         
         item.innerHTML = `
-          <img src="https://via.placeholder.com/80" alt="Imagem Doce">
           <div class="doce-info">
-            <h3>${d.sabores}</h3>
+            <h3>${d.sabor} (${d.tipo.charAt(0).toUpperCase() + d.tipo.slice(1)})</h3>
             <p>Quantidade: ${d.quantidade}</p>
             <p>Preço Unitário: R$ ${d.valorUnitario.toFixed(2)}</p>
           </div>
@@ -212,8 +267,8 @@
     // Limpar campos após adicionar
     function limparCampos() {
       document.getElementById("quantidadeDoces").value = "";
-      document.getElementById("valorDoce").value = "";
       document.getElementById("sabores").value = "";
+      document.getElementById("valorDoce").value = "";
     }
   </script>
 
