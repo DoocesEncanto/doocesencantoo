@@ -2,48 +2,45 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Controle da Confeitaria - Produção de Doces</title>
+  <title>Controle da Confeitaria - Produção</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4e1d2;
+      background-color: #f4e9dc;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: #4e342e;
     }
 
     header {
-      background-color: #813a1c;
-      padding: 20px;
+      background-color: #6d4c41;
+      color: white;
       text-align: center;
-      font-size: 2rem;
-      color: #fff;
+      padding: 20px;
+      font-size: 1.8rem;
     }
 
     .menu {
-      background-color: #ffcc99;
+      background-color: #bcaaa4;
       padding: 10px;
-      display: flex;
-      justify-content: center;
+      text-align: center;
     }
 
     .menu a {
-      color: #813a1c;
       margin: 0 15px;
+      color: #4e342e;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1rem;
     }
 
     .menu a:hover {
-      color: #ff9900;
+      color: #d84315;
     }
 
     .content {
-      margin: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
     }
 
     .form-section {
@@ -52,224 +49,200 @@
       border-radius: 10px;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       margin-bottom: 30px;
-      width: 80%;
-      max-width: 600px;
     }
 
-    .form-section h2 {
-      color: #813a1c;
-      text-align: center;
+    label {
+      display: block;
+      margin-top: 10px;
     }
 
     input, select, button {
-      padding: 10px;
-      margin: 10px 0;
       width: 100%;
-      font-size: 1rem;
-      border-radius: 8px;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 1rem;
     }
 
     button {
-      background-color: #813a1c;
+      background-color: #6d4c41;
       color: white;
       border: none;
       cursor: pointer;
+      margin-top: 15px;
     }
 
     button:hover {
-      background-color: #e86d45;
+      background-color: #a1887f;
     }
 
     .doce-item {
       background-color: #fff;
-      margin: 15px 0;
-      padding: 20px;
+      padding: 15px;
+      margin: 10px 0;
       border-radius: 10px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 80%;
-      max-width: 600px;
     }
 
-    .doce-item img {
-      width: 80px;
-      height: 80px;
-      border-radius: 8px;
-      object-fit: cover;
-      margin-right: 20px;
-    }
-
-    .doce-item .doce-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .doce-item .doce-info h3 {
-      color: #813a1c;
+    .doce-info h3 {
       margin: 0;
-    }
-
-    .doce-item .doce-info p {
-      margin: 0;
-      font-size: 0.9rem;
+      color: #6d4c41;
     }
 
     .footer {
-      background-color: #ffcc99;
-      padding: 20px;
+      background-color: #bcaaa4;
       text-align: center;
-      font-size: 1rem;
-      color: #333;
+      padding: 15px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    Controle da Confeitaria - Produção de Doces
-  </header>
+<header>Controle da Confeitaria - Produção</header>
 
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="vendas.html">Visualizar Vendas</a>
-    <a href="despesas.html">Registrar Despesas</a>
+<div class="menu">
+  <a href="index.html">Home</a>
+  <a href="vendas.html">Vendas</a>
+  <a href="despesas.html">Despesas</a>
+</div>
+
+<div class="content">
+  <div class="form-section">
+    <h2>Registrar Produção</h2>
+
+    <label for="tipoDoce">Tipo de Doce:</label>
+    <select id="tipoDoce">
+      <option value="trufa">Trufa</option>
+      <option value="barra">Barra</option>
+    </select>
+
+    <label for="sabores">Sabor:</label>
+    <select id="sabores">
+      <option value="ninho-nutela">Ninho com Nutella</option>
+      <option value="ferrero">Ferrero Rocher</option>
+      <option value="kit-kat">Kit Kat</option>
+      <option value="dois-amores">Dois Amores</option>
+      <option value="brigadeiro">Brigadeiro</option>
+      <option value="beijinho">Beijinho</option>
+      <option value="leite-ninho">Leite Ninho</option>
+      <option value="maracuja">Maracujá</option>
+      <option value="maracuja-brigadeiro">Maracujá com Brigadeiro</option>
+    </select>
+
+    <label for="quantidadeDoces">Quantidade:</label>
+    <input type="number" id="quantidadeDoces" min="1">
+
+    <label for="valorDoce">Valor Unitário (R$):</label>
+    <input type="number" id="valorDoce" readonly>
+
+    <button onclick="registrarDoces()">Registrar Produção</button>
   </div>
 
-  <div class="content">
-    <div class="form-section">
-      <h2>Registrar Produção de Doces</h2>
+  <h2>Estoque Atual</h2>
+  <div id="listaDoces"></div>
+</div>
 
-      <!-- Seleção de tipo de doce -->
-      <label for="tipoDoce">Tipo de Doce:</label>
-      <select id="tipoDoce">
-        <option value="trufa">Trufa</option>
-        <option value="barra">Barra</option>
-      </select>
+<div class="footer">
+  © 2025 Confeitaria Doce Encanto
+</div>
 
-      <!-- Quantidade de doces -->
-      <label for="quantidadeDoces">Quantidade de Doces:</label>
-      <input type="number" id="quantidadeDoces" placeholder="Quantidade de doces produzidos">
+<script>
+  const precoDoces = {
+    trufa: {
+      "leite-ninho": 8.00,
+      "beijinho": 8.00,
+      "brigadeiro": 8.00,
+      "dois-amores": 8.00,
+      "maracuja": 8.00,
+      "maracuja-brigadeiro": 8.00,
+      "ninho-nutela": 12.00,
+      "ferrero": 12.00,
+      "kit-kat": 12.00
+    },
+    barra: {
+      "leite-ninho": 22.00,
+      "beijinho": 22.00,
+      "brigadeiro": 22.00,
+      "dois-amores": 22.00,
+      "maracuja": 22.00,
+      "maracuja-brigadeiro": 22.00,
+      "ninho-nutela": 25.00,
+      "ferrero": 25.00,
+      "kit-kat": 25.00
+    }
+  };
 
-      <!-- Valor de cada doce -->
-      <label for="valorDoce">Valor Unitário de Cada Doce (R$):</label>
-      <input type="number" id="valorDoce" placeholder="Valor de cada doce" readonly>
+  // Atualiza o valor ao selecionar tipo e sabor
+  document.getElementById("tipoDoce").addEventListener("change", atualizarValor);
+  document.getElementById("sabores").addEventListener("change", atualizarValor);
 
-      <!-- Sabores -->
-      <label for="sabores">Sabores:</label>
-      <select id="sabores">
-        <option value="leite-ninho">Leite Ninho</option>
-        <option value="beijinho">Beijinho</option>
-        <option value="brigadeiro">Brigadeiro</option>
-        <option value="dois-amores">Dois Amores</option>
-        <option value="maracuja">Maracujá</option>
-        <option value="maracuja-brigadeiro">Maracujá com Brigadeiro</option>
-        <option value="ninho-nutela">Ninho com Nutela</option>
-        <option value="ferrero">Ferrero Rocher</option>
-        <option value="kit-kat">Kit Kat</option>
-        <option value="laka-oreo">Laka Oreo</option>
-      </select>
+  function atualizarValor() {
+    const tipo = document.getElementById("tipoDoce").value;
+    const sabor = document.getElementById("sabores").value;
+    const valor = precoDoces[tipo][sabor];
+    document.getElementById("valorDoce").value = valor ? valor.toFixed(2) : "";
+  }
 
-      <button onclick="registrarDoces()">Registrar Produção</button>
-    </div>
+  function registrarDoces() {
+    const tipo = document.getElementById("tipoDoce").value;
+    const sabor = document.getElementById("sabores").value;
+    const quantidade = parseInt(document.getElementById("quantidadeDoces").value);
+    const valorUnitario = precoDoces[tipo][sabor];
 
-    <h2>Doces Produzidos</h2>
-    <div id="listaDoces">
-      <!-- Os doces serão listados aqui -->
-    </div>
-  </div>
-
-  <div class="footer">
-    © 2025 Confeitaria Doce Encanto - Todos os direitos reservados.
-  </div>
-
-  <script>
-    // Preço baseado no tipo e sabor
-    const precoDoces = {
-      trufa: {
-        "leite-ninho": 8.00,
-        "beijinho": 8.00,
-        "brigadeiro": 8.00,
-        "dois-amores": 8.00,
-        "maracuja": 8.00,
-        "maracuja-brigadeiro": 8.00,
-        "ninho-nutela": 12.00,
-        "ferrero": 12.00,
-        "kit-kat": 12.00,
-        "laka-oreo": 12.00,
-      },
-      barra: {
-        "leite-ninho": 22.00,
-        "beijinho": 22.00,
-        "brigadeiro": 22.00,
-        "dois-amores": 22.00,
-        "maracuja": 22.00,
-        "maracuja-brigadeiro": 22.00,
-        "ninho-nutela": 25.00,
-        "ferrero": 25.00,
-        "kit-kat": 25.00,
-        "laka-oreo": 25.00,
-      }
-    };
-
-    function registrarDoces() {
-      const tipo = document.getElementById("tipoDoce").value;
-      const quantidade = parseInt(document.getElementById("quantidadeDoces").value);
-      const sabor = document.getElementById("sabores").value;
-
-      const valorUnitario = precoDoces[tipo][sabor];
-      document.getElementById("valorDoce").value = valorUnitario.toFixed(2);
-
-      if (!quantidade || !sabor) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
-
-      const doces = { tipo, quantidade, sabor, valorUnitario };
-
-      // Armazenar a produção de doces no localStorage
-      let producao = JSON.parse(localStorage.getItem("producaoDoces")) || [];
-      producao.push(doces);
-      localStorage.setItem("producaoDoces", JSON.stringify(producao));
-
-      alert("Produção registrada com sucesso!");
-      carregarDoces();
-      limparCampos();
+    if (!quantidade || !sabor) {
+      alert("Preencha todos os campos.");
+      return;
     }
 
-    // Carregar e exibir os doces
-    function carregarDoces() {
-      const producao = JSON.parse(localStorage.getItem("producaoDoces")) || [];
-      const lista = document.getElementById("listaDoces");
-      lista.innerHTML = "";
+    let estoque = JSON.parse(localStorage.getItem("estoqueDoces")) || [];
+    const index = estoque.findIndex(item => item.sabor === sabor && item.tipo === tipo);
 
-      producao.forEach(d => {
-        const item = document.createElement("div");
-        item.classList.add("doce-item");
-        
-        item.innerHTML = `
-          <div class="doce-info">
-            <h3>${d.sabor} (${d.tipo.charAt(0).toUpperCase() + d.tipo.slice(1)})</h3>
-            <p>Quantidade: ${d.quantidade}</p>
-            <p>Preço Unitário: R$ ${d.valorUnitario.toFixed(2)}</p>
-          </div>
-        `;
-
-        lista.appendChild(item);
-      });
+    if (index >= 0) {
+      estoque[index].quantidade += quantidade;
+    } else {
+      estoque.push({ tipo, sabor, quantidade, valorUnitario });
     }
 
-    // Carregar os doces ao carregar a página
-    window.onload = carregarDoces;
+    localStorage.setItem("estoqueDoces", JSON.stringify(estoque));
+    carregarDoces();
+    limparCampos();
+    alert("Produção registrada com sucesso!");
+  }
 
-    // Limpar campos após adicionar
-    function limparCampos() {
-      document.getElementById("quantidadeDoces").value = "";
-      document.getElementById("sabores").value = "";
-      document.getElementById("valorDoce").value = "";
-    }
-  </script>
+  function carregarDoces() {
+    const lista = document.getElementById("listaDoces");
+    const estoque = JSON.parse(localStorage.getItem("estoqueDoces")) || [];
+    lista.innerHTML = "";
+
+    estoque.forEach(d => {
+      const item = document.createElement("div");
+      item.classList.add("doce-item");
+
+      item.innerHTML = `
+        <div class="doce-info">
+          <h3>${d.sabor} (${d.tipo})</h3>
+          <p>Quantidade: ${d.quantidade}</p>
+          <p>Valor Unitário: R$ ${d.valorUnitario.toFixed(2)}</p>
+        </div>
+      `;
+      lista.appendChild(item);
+    });
+  }
+
+  function limparCampos() {
+    document.getElementById("quantidadeDoces").value = "";
+    document.getElementById("valorDoce").value = "";
+  }
+
+  window.onload = () => {
+    atualizarValor();
+    carregarDoces();
+  };
+</script>
 </body>
 </html>
