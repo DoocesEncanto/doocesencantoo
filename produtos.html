@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle da Confeitaria - Produção de Doces</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdf5e6;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffb3b3;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .menu {
+      background-color: #ffcc99;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .menu a:hover {
+      color: #ff9900;
+    }
+
+    .content {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .form-section h2 {
+      color: #ff7f50;
+      text-align: center;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #ff7f50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e86d45;
+    }
+
+    .doce-item {
+      background-color: #fff;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .doce-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    .doce-item .doce-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .doce-item .doce-info h3 {
+      color: #ff7f50;
+      margin: 0;
+    }
+
+    .doce-item .doce-info p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      background-color: #ffcc99;
+      padding: 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Controle da Confeitaria - Produção de Doces
+  </header>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="vendas.html">Visualizar Vendas</a>
+    <a href="despesas.html">Registrar Despesas</a>
+  </div>
+
+  <div class="content">
+    <div class="form-section">
+      <h2>Registrar Produção de Doces</h2>
+      <label for="quantidadeDoces">Quantidade de Doces:</label>
+      <input type="number" id="quantidadeDoces" placeholder="Quantidade de doces produzidos">
+      <label for="valorDoce">Valor Unitário de Cada Doce (R$):</label>
+      <input type="number" id="valorDoce" placeholder="Valor de cada doce">
+      <label for="sabores">Sabores:</label>
+      <input type="text" id="sabores" placeholder="Ex: Chocolate, Morango">
+      <button onclick="registrarDoces()">Registrar Produção</button>
+    </div>
+
+    <h2>Doces Produzidos</h2>
+    <div id="listaDoces">
+      <!-- Os doces serão listados aqui -->
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Confeitaria Doce Encanto - Todos os direitos reservados.
+  </div>
+
+  <script>
+    function registrarDoces() {
+      const quantidade = parseInt(document.getElementById("quantidadeDoces").value);
+      const valorUnitario = parseFloat(document.getElementById("valorDoce").value);
+      const sabores = document.getElementById("sabores").value;
+
+      if (!quantidade || !valorUnitario || !sabores) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      const doces = { quantidade, valorUnitario, sabores };
+
+      // Armazenar a produção de doces no localStorage
+      let producao = JSON.parse(localStorage.getItem("producaoDoces")) || [];
+      producao.push(doces);
+      localStorage.setItem("producaoDoces", JSON.stringify(producao));
+
+      alert("Produção registrada com sucesso!");
+      carregarDoces();
+      limparCampos();
+    }
+
+    // Carregar e exibir os doces
+    function carregarDoces() {
+      const producao = JSON.parse(localStorage.getItem("producaoDoces")) || [];
+      const lista = document.getElementById("listaDoces");
+      lista.innerHTML = "";
+
+      producao.forEach(d => {
+        const item = document.createElement("div");
+        item.classList.add("doce-item");
+        
+        item.innerHTML = `
+          <img src="https://via.placeholder.com/80" alt="Imagem Doce">
+          <div class="doce-info">
+            <h3>${d.sabores}</h3>
+            <p>Quantidade: ${d.quantidade}</p>
+            <p>Preço Unitário: R$ ${d.valorUnitario.toFixed(2)}</p>
+          </div>
+        `;
+
+        lista.appendChild(item);
+      });
+    }
+
+    // Carregar os doces ao carregar a página
+    window.onload = carregarDoces;
+
+    // Limpar campos após adicionar
+    function limparCampos() {
+      document.getElementById("quantidadeDoces").value = "";
+      document.getElementById("valorDoce").value = "";
+      document.getElementById("sabores").value = "";
+    }
+  </script>
+
+</body>
+</html>
